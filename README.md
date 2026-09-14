@@ -2,6 +2,12 @@
 
 Speak once. See what you said and what you meant to send.
 
+Submitted to Voice Hackathon Week: Hack into Dictation (AssemblyAI), Sep 14 2026.
+
+- Live: https://foulcopy.vercel.app
+- Demo video: https://drive.google.com/file/d/1K67g2re7qcj5qcgFJkhyqlXNQnBV6IQz/view?usp=sharing
+- Source: this repo
+
 Foulcopy is a dictation pad on the [AssemblyAI Dictation API](https://www.assemblyai.com/docs/dictation). One utterance is posted as 16 kHz PCM (or a WAV file) to `POST https://dictation.assemblyai.com/v1/transcribe/live`. The pad prints both returns: `text` (verbatim) and `llm_response` (send ready).
 
 ## Judge path (under 90 seconds)
