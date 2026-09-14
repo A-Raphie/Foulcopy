@@ -41,33 +41,55 @@ export default function Home() {
         <section id="how" className="mx-auto max-w-6xl scroll-mt-20 px-6 pb-24">
           <p className="micro">How</p>
           <h2 className="mt-3 max-w-[680px] text-3xl font-semibold tracking-tight text-balance">
-            Mic to proof sheet in one request
+            One request, both returns
           </h2>
-          <ol className="mt-8 grid gap-6 md:grid-cols-3">
-            <li>
-              <p className="micro">01</p>
-              <p className="mt-2 font-medium">Record and speak</p>
-              <p className="caption mt-1">
-                The pad captures 16 kHz mono PCM while you talk.
+          <div className="sheet mt-8">
+            <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b border-[var(--border-default)] px-5 py-3">
+              <p className="font-mono text-[12px] text-[var(--text-primary)]">
+                POST dictation.assemblyai.com/v1/transcribe/live
               </p>
-            </li>
-            <li>
-              <p className="micro">02</p>
-              <p className="mt-2 font-medium">One live POST</p>
-              <p className="caption mt-1">
-                Config goes first, then audio, to
-                dictation.assemblyai.com/v1/transcribe/live.
+              <p className="font-mono text-[11px] text-[var(--text-muted)]">
+                multipart · config first
               </p>
-            </li>
-            <li>
-              <p className="micro">03</p>
-              <p className="mt-2 font-medium">Read the DIFF</p>
-              <p className="caption mt-1">
-                Spoken stays on the left. Send ready on the right. Copy the
-                rewrite.
-              </p>
-            </li>
-          </ol>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2">
+              <div className="border-b border-[var(--border-default)] p-5 md:border-b-0 md:border-r">
+                <p className="micro">Part 1 · config</p>
+                <pre className="mt-3 overflow-x-auto font-mono text-[12px] leading-6 text-[var(--text-secondary)]">
+                  {`{
+  "language_codes": ["en"],
+  "keyterms_prompt": ["Foulcopy", "AssemblyAI"]
+}`}
+                </pre>
+              </div>
+              <div className="p-5">
+                <p className="micro">Part 2 · audio</p>
+                <pre className="mt-3 overflow-x-auto font-mono text-[12px] leading-6 text-[var(--text-secondary)]">
+                  {`spoken.wav
+WAV · 16 kHz mono · 3.5 s`}
+                </pre>
+              </div>
+            </div>
+            <div className="border-t border-[var(--border-default)] px-5 py-5">
+              <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                <p className="micro">Response</p>
+                <p className="font-mono text-[11px] text-[var(--text-muted)]">
+                  200 · 452 ms
+                </p>
+              </div>
+              <pre className="mt-3 overflow-x-auto font-mono text-[12px] leading-6 text-[var(--text-secondary)]">
+                {`{
+  "text": "Um, so yeah, I, I meant to say ship the receipt tonight, not tomorrow.",
+  "llm_response": "So yeah, I meant to say ship the receipt tonight, not tomorrow.",
+  "confidence": 0.958,
+  "session_id": "6b45c74c-967f-4408-b019-3cb143e99572"
+}`}
+              </pre>
+            </div>
+          </div>
+          <p className="caption mt-3">
+            Recorded take 6b45c74c, keyterms on. Run your own on the pad.
+          </p>
         </section>
 
         <section className="mx-auto max-w-6xl px-6 pb-24">

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { WarmDot } from "./warm-dot";
 
 export function SkipLink() {
   return (
@@ -46,16 +47,7 @@ export function SiteHeader({ current }: { current: "home" | "app" }) {
               Pad
             </Link>
           )}
-          <span
-            className="hidden items-center gap-2 rounded-[var(--radius-pill)] border border-[var(--border-default)] px-2.5 py-1 text-[11px] text-[var(--text-muted)] sm:inline-flex"
-            title="AssemblyAI Dictation API, beta. One POST per utterance."
-          >
-            <span
-              aria-hidden
-              className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--accent)]"
-            />
-            Dictation API
-          </span>
+          <WarmDot />
         </div>
       </nav>
     </header>

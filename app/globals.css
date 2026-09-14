@@ -171,6 +171,21 @@ input:focus-visible {
   top: 12px;
 }
 
+/* Stamped evidence chip: mono, boxed, never bare trailing text */
+.count-chip {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  padding: 2px 6px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-card);
+  background: var(--bg-base);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

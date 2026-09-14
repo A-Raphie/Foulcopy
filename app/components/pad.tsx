@@ -370,14 +370,7 @@ export function Pad() {
         </p>
       ) : null}
 
-      <ProofSheet
-        result={result}
-        emptyHint={
-          status === "sending"
-            ? "Waiting on dictation.assemblyai.com."
-            : "Press Record, then speak."
-        }
-      />
+      <ProofSheet result={result} pending={status === "sending"} />
     </div>
   );
 }
