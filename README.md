@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Foulcopy
 
-## Getting Started
+Speak once. See what you said and what you meant to send.
 
-First, run the development server:
+Foulcopy is a dictation pad on the [AssemblyAI Dictation API](https://www.assemblyai.com/docs/dictation). One utterance is posted as 16 kHz PCM (or a WAV file) to `POST https://dictation.assemblyai.com/v1/transcribe/live`. The pad prints both returns: `text` (verbatim) and `llm_response` (send ready).
+
+## Judge path (under 90 seconds)
+
+1. Open `/app`.
+2. Press Record. Speak a messy sentence with an "um" and a self correction.
+3. Press Stop and print.
+4. Read the two columns. Copy send ready.
+
+If the mic is blocked, Upload WAV accepts a 16-bit WAV under 120 seconds.
+
+## Stack
+
+Next.js 16 on Vercel. The browser never sees `ASSEMBLYAI_API_KEY`. `/api/dictate` forwards multipart config-then-audio. `/api/warm` hits `GET /warm`.
+
+## Honesty
+
+- Dictation is a separate service from AssemblyAI streaming STT. This app does not caption while you talk. Capture finishes, then one POST runs.
+- Rewrite is best effort. A timeout still returns 200 with `text` and `llm_error`.
+- The landing specimen is labeled. Live takes come from the API.
+- GET `https://dictation.assemblyai.com/transcribe` returns 405. There is no public playground UI.
+
+## Local
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cp .env.example .env.local
+# paste ASSEMBLYAI_API_KEY
+bun install
+bun run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Built by [Raphie](https://x.com/a_raphie) for Voice Hackathon Week.
