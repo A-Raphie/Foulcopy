@@ -12,7 +12,7 @@ export default function Home() {
           <p className="micro">Dictation pad</p>
           <h1 className="mt-4 max-w-[680px] text-5xl font-semibold leading-none tracking-tight text-balance">
             <span className="text-[var(--text-primary)]">Speak once.</span>{" "}
-            <span className="text-[var(--text-primary)]/45">
+            <span className="text-[var(--text-primary)]/55">
               See what you said and what you meant to send.
             </span>
           </h1>
@@ -73,14 +73,14 @@ export default function Home() {
         <section className="mx-auto max-w-6xl px-6 pb-24">
           <p className="micro">On this pad</p>
           <div className="mt-6 grid gap-px bg-[var(--border-default)] md:grid-cols-2">
-            <div className="bg-[var(--bg-base)] px-0 py-4 pr-6">
+            <div className="bg-[var(--bg-base)] px-5 py-4">
               <p className="font-medium">It does</p>
               <p className="caption mt-1">
                 Live dictation, filler cleanup, optional rewrite instruction,
-                keyterms, 18 languages.
+                keyterms, 19 languages.
               </p>
             </div>
-            <div className="bg-[var(--bg-base)] px-0 py-4 pr-6">
+            <div className="bg-[var(--bg-base)] px-5 py-4">
               <p className="font-medium">It does not</p>
               <p className="caption mt-1">
                 Long meetings. Streaming captions while you talk. Translation.

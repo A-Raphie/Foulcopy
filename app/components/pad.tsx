@@ -179,6 +179,36 @@ export function Pad() {
     }
   }, [stopAndSend, stopGraph]);
 
+  const runSample = useCallback(async () => {
+    setError(null);
+    setCopied(false);
+    setStatus("sending");
+    try {
+      const resWav = await fetch("/spoken.wav");
+      if (!resWav.ok) throw new Error("Sample take is missing on this host.");
+      const blob = await resWav.blob();
+      const file = new File([blob], "spoken.wav", { type: "audio/wav" });
+      const form = new FormData();
+      form.append("audio", file, "spoken.wav");
+      form.append("contentType", "audio/wav");
+      form.append("language", language);
+      const instruction =
+        REWRITE_PRESETS.find((p) => p.id === preset)?.instruction ?? "";
+      if (instruction) form.append("llmInstruction", instruction);
+      if (keyterms.trim()) form.append("keyterms", keyterms);
+      const res = await fetch("/api/dictate", { method: "POST", body: form });
+      const json = await res.json();
+      if (!res.ok) {
+        throw new Error(json.error ?? `Request failed (${res.status})`);
+      }
+      setResult(json as DictationResult);
+      setStatus("idle");
+    } catch (err) {
+      setStatus("error");
+      setError(err instanceof Error ? err.message : "Sample take failed.");
+    }
+  }, [keyterms, language, preset]);
+
   const onFile = useCallback(
     async (file: File) => {
       setError(null);
@@ -224,7 +254,7 @@ export function Pad() {
     <div className="flex flex-col gap-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <p className="text-[15px] text-[var(--text-secondary)]">
-          Hold the mic. Speak a messy sentence. Release to print both lines.
+          Press Record and speak a messy sentence. Stop to print both lines.
         </p>
         <p className="font-mono text-[12px] text-[var(--text-muted)]">
           {live ? `${elapsed.toFixed(1)}s / ${MAX_SECONDS}s` : "idle"}
@@ -256,6 +286,14 @@ export function Pad() {
               : live
                 ? "Stop and print"
                 : "Record"}
+        </button>
+        <button
+          type="button"
+          className="btn btn-ghost"
+          disabled={busy || live || keyConfigured === false}
+          onClick={() => void runSample()}
+        >
+          Run sample take
         </button>
         <label className="btn btn-ghost cursor-pointer">
           Upload WAV

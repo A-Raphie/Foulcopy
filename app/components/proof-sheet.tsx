@@ -96,7 +96,7 @@ export function ProofSheet({
     <section className="sheet">
       <div className="grid grid-cols-1 md:grid-cols-2">
         <div className="border-b border-[var(--border-default)] p-5 md:border-b-0 md:border-r">
-          <div className="flex items-baseline justify-between gap-4">
+          <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
             <p className="micro">Spoken · verbatim</p>
             <p className="font-mono text-[11px] text-[var(--text-muted)]">
               {dropped} dropped
@@ -107,7 +107,7 @@ export function ProofSheet({
           </div>
         </div>
         <div className="p-5">
-          <div className="flex items-baseline justify-between gap-4">
+          <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
             <p className="micro">Send ready · rewrite</p>
             <p className="font-mono text-[11px] text-[var(--text-muted)]">
               {added} added
@@ -157,7 +157,7 @@ export function SpecimenSheet() {
   const { left, right } = wordDiff(spoken, send);
   return (
     <section id="proof" className="sheet scroll-mt-20">
-      <div className="flex items-baseline justify-between border-b border-[var(--border-default)] px-5 py-3">
+      <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b border-[var(--border-default)] px-5 py-3">
         <p className="micro">Specimen · not a live take</p>
         <p className="font-mono text-[11px] text-[var(--text-muted)]">
           text vs llm_response

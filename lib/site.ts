@@ -1,4 +1,4 @@
-export const SITE_URL = "https://tryfoulcopy.vercel.app";
+export const SITE_URL = "https://foulcopy.vercel.app";
 export const SITE_NAME = "Foulcopy";
 export const SITE_TAGLINE =
   "Speak once. See what you said and what you meant to send.";

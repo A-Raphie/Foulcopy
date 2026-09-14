@@ -7,11 +7,11 @@ Foulcopy is a dictation pad on the [AssemblyAI Dictation API](https://www.assemb
 ## Judge path (under 90 seconds)
 
 1. Open `/app`.
-2. Press Record. Speak a messy sentence with an "um" and a self correction.
-3. Press Stop and print.
-4. Read the two columns. Copy send ready.
+2. Press Run sample take. That posts a 3.5s spoken WAV through the live Dictation API.
+3. Read the two columns. Spoken keeps the "Um". Send ready drops it.
+4. Optional: Record your own take, or Upload WAV.
 
-If the mic is blocked, Upload WAV accepts a 16-bit WAV under 120 seconds.
+Mic capture is live PCM. The sample take is the no-permission judge path.
 
 ## Stack
 
