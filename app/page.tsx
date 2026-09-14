@@ -46,7 +46,7 @@ export default function Home() {
           <ol className="mt-8 grid gap-6 md:grid-cols-3">
             <li>
               <p className="micro">01</p>
-              <p className="mt-2 font-medium">Hold and speak</p>
+              <p className="mt-2 font-medium">Record and speak</p>
               <p className="caption mt-1">
                 The pad captures 16 kHz mono PCM while you talk.
               </p>
